@@ -55,6 +55,11 @@ class UsersController extends Controller
             $request->input('email') !== null &&
             $request->input('password') !== null
         ) {
+            //This should work...
+            // $user = \Auth::attempt([
+            //     'email' => $request->input('email'),
+            //     'password' => $this->_hashPassword($request->input('password'))
+            // ]);
             try {
                 $user = DB::table('users')
                     ->select('id', 'api_token', 'email', 'name')
