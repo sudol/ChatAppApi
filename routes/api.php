@@ -18,8 +18,8 @@ Route::post('/users/login', 'UsersController@login');
 Route::get('/users/me', 'UsersController@view')->middleware('auth:api');
 Route::put('/users/me', 'UsersController@edit')->middleware('auth:api');
 
-Route::get('/chat/list', 'ChatController@list')->middleware('auth:api');
-Route::post('/chat/create', 'ChatController@create')->middleware('auth:api');
+Route::get('/chats', 'ChatController@list')->middleware('auth:api');
+Route::post('/chats', 'ChatController@create')->middleware('auth:api');
 
 Route::get('/messages/list', 'MessagesController@list')->middleware('auth:api');
 Route::post('/messages/create', 'MessagesController@create')->middleware('auth:api');
