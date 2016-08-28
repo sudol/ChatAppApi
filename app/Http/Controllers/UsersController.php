@@ -44,10 +44,38 @@ class UsersController extends Controller
             } catch (\Exception $e) {
                 return ['success' => false];
             }
-
-        } else {
-            return array();
         }
 
+        return ['success' => false];
+    }
+
+    public function login(Request $request)
+    {
+        if (
+            $request->input('email') !== null &&
+            $request->input('password') !== null
+        ) {
+            try {
+                $user = DB::table('users')
+                    ->select('id', 'api_token', 'email', 'name')
+                    ->where([
+                        ['email', '=', $request->input('email')],
+                        [
+                            'password',
+                            '=',
+                            hash('sha256', $this->_salt . $request->input('password'))
+                        ]
+                    ])->get()
+                    ->first();
+
+                if ($user !== null) {
+                    return ['success' => true, 'data' => $user];
+                }
+            } catch (\Exception $e) {
+                return ['success' => false];
+            }
+        }
+
+        return ['success' => false];
     }
 }
