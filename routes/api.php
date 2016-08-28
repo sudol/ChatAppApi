@@ -15,8 +15,8 @@ use Illuminate\Http\Request;
 
 Route::post('/users/register', 'UsersController@register');
 Route::post('/users/login', 'UsersController@login');
-Route::get('/users/view', 'UsersController@view')->middleware('auth:api');
-Route::put('/users/edit', 'UsersController@edit')->middleware('auth:api');
+Route::get('/users/me', 'UsersController@view')->middleware('auth:api');
+Route::put('/users/me', 'UsersController@edit')->middleware('auth:api');
 
 Route::get('/chat/list', 'ChatController@list')->middleware('auth:api');
 Route::post('/chat/create', 'ChatController@create')->middleware('auth:api');
