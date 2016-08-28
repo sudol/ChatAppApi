@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 class UsersController extends Controller
 {
+    protected $_salt = "98^.3c!2";
+
     public function register(Request $request)
     {
         if (
@@ -22,7 +24,9 @@ class UsersController extends Controller
                     [
                         'name'       => $request->input('name'),
                         'email'      => $request->input('email'),
-                        'password'   => $request->input('password'),
+                        'password'   => hash(
+                            'sha256', $this->_salt . $request->input('password')
+                        ),
                         'api_token'  => str_random(255),
                         'created_at' => new \DateTime(),
                         'updated_at' => new \DateTime()
