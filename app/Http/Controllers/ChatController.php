@@ -14,8 +14,9 @@ class ChatController extends Controller
         $page = $request->input('page');
         $limit = $request->input('limit');
 
-
-        $chat = \App\Chat::where('name', 'like', '%' . $query . '%')
+        $chat = \App\Chat::with('user')
+            ->with("lastMessage.user")
+            ->where('name', 'like', '%' . $query . '%')
             ->paginate($perPage = $limit, array('*'), 'page', $page);
 
         $result = [
