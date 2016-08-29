@@ -15,6 +15,7 @@ php artisan db:seed
 </pre>
 
 ## Api methods
+All the API methods are server from the /api url. e.g /api/users/register, /api/chats <br/>
 Routes for all the api methods are in <code>/routes/api.php</code>
 
 ## Sample Data
